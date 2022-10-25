@@ -1,0 +1,19 @@
+<% price = 0 %>
+<% @cartitems.each do |e| %>
+    <br>
+    <p>
+        商品名：
+        <%= Product.find(e.product_id).name %>
+        個数：
+        <%= e.qty %>
+        合計金額：
+        <%= Product.find(e.product_id).price * e.qty %>円
+        <% price = price + Product.find(e.product_id).price * e.qty %>
+        <%= link_to '削除', cartitem_path(e), method: :delete %>
+    </p>
+    </br>
+<% end %>
+総計金額：<%= price %>
+<br>
+<%= link_to 'Back', '/' %>
+</br>
